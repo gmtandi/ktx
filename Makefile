@@ -18,12 +18,12 @@
 #
 #   $Id$
 
-RM=/bin/rm
+RM=/usr/bin/rm
 
 
 SRCDIR=src
 INCDIR=include
-PREFIX=/usr/local
+PREFIX=/mingw32
 
 MAKEDL=$(MAKE) -f Makefile.dl
 MAKEDL32=$(MAKE) -f Makefile.dl32
@@ -55,7 +55,8 @@ build-dl32bots:
 
 build-vm:
 			cd $(SRCDIR); $(MAKEQVM) build
-
+build-vmbots:
+			cd $(SRCDIR); $(MAKEQVM) build BOT_SUPPORT=1
 
 
 install:	install-dl install-dl32 install-vm
