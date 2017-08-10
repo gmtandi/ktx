@@ -11,7 +11,7 @@ Debug_*/
 Release_*/
 *.sdf
 *.user
-./Makefile
+Makefile
 config.log
 config.status
 src/Makefile.dl
