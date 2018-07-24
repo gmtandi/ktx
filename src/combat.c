@@ -246,6 +246,7 @@ void Killed( gedict_t * targ, gedict_t * attacker, gedict_t * inflictor )
 
 	self->s.v.enemy = EDICT_TO_PROG( attacker );
 
+/*
 	// bump the monster counter
 	if ( ( ( int ) ( self->s.v.flags ) ) & FL_MONSTER )
 	{
@@ -263,7 +264,7 @@ void Killed( gedict_t * targ, gedict_t * attacker, gedict_t * inflictor )
 			if ( attacker->ct == ctPlayer )
 				attacker->s.v.frags++;
 		}
-	}
+	}*/
 
 	ClientObituary( self, attacker );
 
@@ -271,7 +272,7 @@ void Killed( gedict_t * targ, gedict_t * attacker, gedict_t * inflictor )
 	self->touch = ( func_t ) SUB_Null;
 	self->s.v.effects = 0;
 
-	monster_death_use();
+//	monster_death_use();
 
 	if ( self->th_die )
 		self->th_die();
@@ -292,8 +293,6 @@ void Killed( gedict_t * targ, gedict_t * attacker, gedict_t * inflictor )
 			EndMatch( 0 );
 	}
 
-	if ( k_bloodfest )
-		bloodfest_killed_hook( targ, attacker );
 }
 
 #ifndef Q3_VM
@@ -961,10 +960,10 @@ void T_Damage( gedict_t * targ, gedict_t * inflictor, gedict_t * attacker, float
 	oldself = self;
 	self = targ;
 
-  	if ( (int)self->s.v.flags & FL_MONSTER )
-  	{
-		GetMadAtAttacker( attacker );
-  	}
+//  	if ( (int)self->s.v.flags & FL_MONSTER )
+//  	{
+//		GetMadAtAttacker( attacker );
+//  	}
 
 	if ( self->th_pain )
 	{

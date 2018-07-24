@@ -102,6 +102,19 @@ void player_run()
 	self->walkframe = self->walkframe + 1;
 }
 
+void KickPlayer(int psize, gedict_t *p)
+{
+        g_globalvars.msg_entity = EDICT_TO_PROG( p );
+        if ((psize > -3))
+        {
+                WriteByte (MSG_ONE, 34);
+        }
+        else
+        {
+                WriteByte (MSG_ONE, 35);
+        }
+}
+
 void muzzleflash()
 {
 	WriteByte( MSG_MULTICAST, SVC_MUZZLEFLASH );
@@ -373,6 +386,7 @@ void player_axed4()
 //============================================================================
 
 // this shit present in ktpro, but test does't show why we need this, because 99.9% of time diff is just 0
+
 void set_idealtime()
 {
 	float diff = self->s.v.ltime - g_globalvars.time;

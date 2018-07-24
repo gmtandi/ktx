@@ -273,7 +273,7 @@ void EndMatch ( float skip_log )
 			}
 		}
 
-		bloodfest_stats();
+//		bloodfest_stats();
 	}
 
 	if ( /* skip_log || */ !deathmatch )
@@ -759,7 +759,6 @@ void StartMatch ()
 	char date[64];
 
 	// reset bloodfest vars.
-	bloodfest_reset();
 
 	k_nochange   = 0;
 	k_showscores = 0;

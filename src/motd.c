@@ -1,4 +1,4 @@
-/*
+	/*
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation; either version 2 of the License, or
@@ -67,6 +67,8 @@ void PMOTDThink()
 //	strlcat(buf, va("Based on %s\n", redtext("Kombat teams 2.21")), sizeof(buf));
 //	strlcat(buf, "by kemiKal, Cenobite, Sturm and Fang\n\n", sizeof(buf));
 	strlcat(buf, va("Type \"%s\" for help", redtext("commands")), sizeof(buf));
+
+TeamFortres_Aliases();
 
 	G_centerprint ( PROG_TO_EDICT( self->s.v.owner ), "%s",  buf);
 

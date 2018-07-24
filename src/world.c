@@ -179,6 +179,32 @@ void SP_worldspawn()
 		trap_cvar_set( "sv_gravity", "150" );
 	else
 		trap_cvar_set( "sv_gravity", "800" );
+
+       trap_cvar_set("pausable", "0");
+       trap_cvar_set("sv_friction", "6");
+       trap_cvar_set("sv_waterfriction", "1");
+
+//SOTODO//
+/*	st = infokey (world, "exec_map_cfgs");
+	if ((st == "on"))
+	{
+		st = infokey (world, "cycledir");
+		if ((st != string_null))
+		{
+			localcmd ("exec ");
+			localcmd (st);
+			localcmd ("/");
+		}
+		else
+		{
+			localcmd ("exec qwmcycle/");
+		}
+		localcmd (mapname);
+		localcmd (".cfg\n");
+	}*/
+//EOT//
+
+
 // the area based ambient sounds MUST be the first precache_sounds
 
 // player precaches     
@@ -457,6 +483,81 @@ void SP_worldspawn()
 	trap_precache_model( "maps/b_batt0.bsp" );
 // cells 12
 	trap_precache_model( "maps/b_batt1.bsp" );
+
+// TF PRECACHES
+trap_precache_sound ("speech/ctwin.wav");
+trap_precache_sound ("speech/terwin.wav");
+trap_precache_model ("progs/player.mdl");
+trap_precache_model ("progs/eyes.mdl");
+trap_precache_model ("progs/h_player.mdl");
+trap_precache_model ("progs/gib1.mdl");
+trap_precache_model ("progs/gib2.mdl");
+trap_precache_model ("progs/gib3.mdl");
+trap_precache_model ("progs/s_bubble.spr");
+trap_precache_model ("progs/s_explod.spr");
+trap_precache_model ("progs/v_axe.mdl");
+trap_precache_model ("progs/v_shot.mdl");
+trap_precache_model ("progs/v_nail.mdl");
+trap_precache_model ("progs/v_rock.mdl");
+trap_precache_model ("progs/v_shot2.mdl");
+trap_precache_model ("progs/v_nail2.mdl");
+trap_precache_model ("progs/v_rock2.mdl");
+trap_precache_model ("progs/grenade.mdl");
+trap_precache_model ("progs/bolt.mdl");
+trap_precache_model ("progs/bolt2.mdl");
+trap_precache_model ("progs/bolt3.mdl");
+trap_precache_model ("progs/lavaball.mdl");
+trap_precache_model ("progs/missile.mdl");
+trap_precache_model ("progs/spike.mdl");
+trap_precache_model ("progs/s_spike.mdl");
+trap_precache_model ("progs/backpack.mdl");
+trap_precache_model ("progs/zom_gib.mdl");
+trap_precache_model ("progs/v_light.mdl");
+trap_precache_model ("progs/laser.mdl");
+trap_precache_sound ("enforcer/enfire.wav");
+trap_precache_sound ("enforcer/enfstop.wav");
+trap_precache_sound ("hknight/attack1.wav");
+trap_precache_model ("progs/sight.spr");
+trap_precache_model ("progs/dot1.spr");
+trap_precache_model ("progs/dot2.spr");
+trap_precache_model ("progs/dot3.spr");
+trap_precache_model ("progs/dot4.spr");
+trap_precache_model ("progs/caltrop.mdl");
+trap_precache_model ("progs/cross1.mdl");
+trap_precache_model ("progs/v_medi.mdl");
+trap_precache_model ("progs/v_bio.mdl");
+trap_precache_model ("progs/hgren2.mdl");
+trap_precache_model ("progs/biggren.mdl");
+trap_precache_model ("progs/flare.mdl");
+trap_precache_model ("progs/v_srifle.mdl");
+trap_precache_model ("progs/v_asscan.mdl");
+trap_precache_model ("progs/detpack.mdl");
+trap_precache_model ("progs/ammobox.mdl");
+trap_precache_model ("progs/v_knife.mdl");
+trap_precache_model ("progs/v_knife2.mdl");
+trap_precache_model ("progs/v_span.mdl");
+trap_precache_model ("progs/e_spike1.mdl");
+trap_precache_model ("progs/e_spike2.mdl");
+trap_precache_model ("progs/v_rail.mdl");
+trap_precache_model ("progs/turrgun.mdl");
+trap_precache_model ("progs/turrbase.mdl");
+trap_precache_model ("progs/tgib1.mdl");
+trap_precache_model ("progs/tgib2.mdl");
+trap_precache_model ("progs/tgib3.mdl");
+trap_precache_model ("progs/disp.mdl");
+trap_precache_model ("progs/dgib1.mdl");
+trap_precache_model ("progs/dgib2.mdl");
+trap_precache_model ("progs/dgib3.mdl");
+trap_precache_model ("progs/grenade2.mdl");
+trap_precache_model ("progs/v_grap.mdl");
+trap_precache_model ("progs/hook.mdl");
+trap_precache_model ("progs/caltrop.mdl");
+trap_precache_sound ("doors/baseuse.wav");
+trap_precache_sound ("doors/medtry.wav");
+trap_precache_sound ("speech/saveme1.wav");
+trap_precache_sound ("speech/saveme2.wav");
+trap_precache_model ("progs/detpack2.mdl");
+trap_precache_model ("progs/grenade3.mdl");
 
 //
 // Setup light animation tables. 'a' is total darkness, 'z' is maxbright.
@@ -934,6 +1035,21 @@ void FirstFrame	( )
 	RegisterSkillVariables();
 // }
 #endif
+
+
+//SOTODO//
+
+//	teamplay = cvar ("teamplay");
+//	timelimit = (cvar ("timelimit") * 60);
+//	fraglimit = cvar ("fraglimit");
+//	deathmatch = cvar ("deathmatch");
+RegisterCvar("teamplay");
+RegisterCvar("timelimit");
+RegisterCvar("fraglimit");
+RegisterCvar("deathmatch");
+
+//EOT//
+
 
 	RegisterCvar("k_lgcmode");
 
@@ -1485,7 +1601,7 @@ void StartFrame( int time )
 	if ( isRACE() )
 		race_think();
 
-	check_monsters_respawn();
+//	check_monsters_respawn();
 
 	CheckTeamStatus();
 

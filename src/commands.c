@@ -23,6 +23,9 @@
 
 int max_cmd_len = 0;
 
+
+void TeamFortress_PrimeGrenade();
+
 qbool is_rules_change_allowed( void );
 void SendMessage(char *name);
 float CountRPlayers();
@@ -304,6 +307,7 @@ void DemoMark()
 
 const char CD_NODESC[] = "no desc";
 
+#define CD_THROWGRENADE "throw grenade"
 #define CD_VOTEMAP    "alternative map vote system"
 #define CD_COMMANDS   "show commands list"
 #define CD_SCORES     "print match time/scores"
@@ -624,6 +628,11 @@ void redirect();
 #define DEF(ptr) ((void (*)())(ptr))
 
 cmd_t cmds[] = {
+	{"+gren1", TeamFortress_PrimeGrenade, 0, CF_PLAYER, CD_THROWGRENADE },
+	{"-gren1", TeamFortress_PrimeGrenade, 0, CF_PLAYER, CD_THROWGRENADE },
+	{"+gren2", TeamFortress_PrimeGrenade, 0, CF_PLAYER, CD_THROWGRENADE },
+	{"-gren2", TeamFortress_PrimeGrenade, 0, CF_PLAYER, CD_THROWGRENADE },
+
 	{ "race",		 ToggleRace,				0    , CF_PLAYER | CF_SPC_ADMIN, CD_RACE },
 	{ "cm",          SelectMap,                 0    , CF_BOTH | CF_MATCHLESS | CF_NOALIAS, CD_NODESC },
 	{ "mapslist_dl", mapslist_dl,               0    , CF_BOTH | CF_MATCHLESS | CF_PARAMS | CF_NOALIAS | CF_CONNECTION_FLOOD, CD_MAPSLIST_DL },
@@ -4519,11 +4528,11 @@ void ktpro_autotrack_predict_powerup( void )
 		if ( len >= best_len )
 			continue; // not interesting, we alredy have someone with similar closeness to powerup
 
-		if ( !visible( p ) )
-		{
+//		if ( !visible( p ) )
+//		{
 //			G_bprint(2, "not visible\n");
-			continue; // powerup not visible for this player
-		}
+//			continue; // powerup not visible for this player
+//		}
 
 		best = p;
 	}
