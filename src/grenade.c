@@ -8,7 +8,8 @@ void TeamFortress_PrimeGrenade ()
 void TeamFortress_GrenadePrimed()
 {
         sound (self, CHAN_WEAPON, "weapons/ax1.wav", 1, ATTN_NORM);
-        KickPlayer (-1, user);
+/*        KickPlayer (-1, user);
+
         newmis = spawn ();
         newmis.owner = user;
         newmis.movetype = enter;
@@ -151,7 +152,8 @@ void TeamFortress_GrenadePrimed()
         self = oldself;
         dremove (self);
 };
-
+*/
+}
 
 /*
 
